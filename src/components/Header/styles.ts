@@ -21,11 +21,11 @@ export const Aside = styled.aside`
     align-items: center;
     gap: 0.25rem;
     height: 100%;
-    padding: 0.5rem;
+    padding: 0.6rem;
     border-radius: 8px;
     background: ${(props)=> props.theme.colors['purple-light']};
     p{
-      color: ${(props)=> props.theme['purple']};
+      color: ${(props)=> props.theme.colors['purple']};
       font-size: 0.875rem;
     }
   }

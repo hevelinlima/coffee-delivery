@@ -28,12 +28,12 @@ export const ItemsContainer = styled.div`
   grid-template-columns: 1fr 1fr;
   grid-row-gap: 1.125rem;
 
-  > div {
+  div {
     display: flex;
     align-items: center;
     gap: 0.75rem;
       .icon-background{ 
-        padding: 0.3rem;
+        padding: 0.4rem;
         border-radius: 50%;
         color: ${(props)=> props.theme.colors["background"]};
       }
@@ -44,4 +44,9 @@ export const ItemsContainer = styled.div`
     }
 `
 
-export const CoffeeList = styled.div``
+export const CoffeeList = styled.div`
+  h1{
+    ${typography.fonts.titleL};
+    color: ${(props)=> props.theme.colors["base-subtitle"]};
+  }
+`

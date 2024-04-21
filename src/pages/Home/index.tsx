@@ -55,6 +55,7 @@ export function Home(){
         <img src={ imageMain} alt="" />
       </HomeContainer>
       <CoffeeList>
+        <h1>Nossos cafés</h1>
         <Card />
       </CoffeeList>
     </>
