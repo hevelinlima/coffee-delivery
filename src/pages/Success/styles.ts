@@ -38,6 +38,7 @@ export const DataReview = styled.div`
   display: flex;
   flex-direction: column;
   gap: 1.25rem;
+  
   div{
     display: flex;
     align-items: center;
