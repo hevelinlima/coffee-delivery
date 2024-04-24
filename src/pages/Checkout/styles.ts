@@ -1,7 +1,17 @@
 import styled from "styled-components";
 import { typography } from "../../styles/typography";
 
+export const Container = styled.div`
+  max-width: 90rem;
+  display: flex;
+  gap: 2rem;
+`
+
 export const InfoContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+
    h2{
     ${typography.fonts.titleXS}
     color: ${(props)=>props.theme.colors["base-subtitle"]};
@@ -63,5 +73,22 @@ export const PaymentForm = styled.div`
       color: ${(props)=> props.theme.colors['base-text']}
     }
   }
-
 `  
+
+export const PaymentOptions = styled.div`
+  section {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    
+
+    div{
+      display: flex;
+      gap: 0.75rem;
+      padding: 1rem;
+      svg{
+        color: ${(props)=>props.theme.colors['purple']}; 
+      }
+    }
+  }
+`
