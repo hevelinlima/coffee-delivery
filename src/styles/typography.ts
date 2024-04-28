@@ -61,7 +61,7 @@ export const typography = {
     tag: css`
       font-family: 'Roboto', sans-serif;
       font-size: 0.625rem;
-      font-style: bold;
+      font-weight: 700;
       line-height: 1.3;
     `,
     buttonG: css`

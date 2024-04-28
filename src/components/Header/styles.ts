@@ -38,5 +38,10 @@ export const Aside = styled.aside`
   border-radius: 8px;
   display: flex;
   align-items: center;
+  transition: all 0.2;
+
+  &:hover{
+    opacity: 0.7;
+  }
   }
 `

@@ -2,7 +2,7 @@ import styled from "styled-components";
 import { typography } from "../../styles/typography";
 
 export const HomeContainer = styled.div`
-  padding: 3.5rem 0 6.75rem 0;
+  padding: 3.5rem 0 5.5rem 0;
   display: flex;
   gap: 3.5rem;
   img{
@@ -44,9 +44,16 @@ export const ItemsContainer = styled.div`
     }
 `
 
-export const CoffeeList = styled.div`
+export const CoffeeCatalog = styled.div`
   h1{
     ${typography.fonts.titleL};
     color: ${(props)=> props.theme.colors["base-subtitle"]};
+  }
+  main{
+    margin-top: 3.375rem;
+    display: grid;
+    width: 100%;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    gap: 2rem;
   }
 `

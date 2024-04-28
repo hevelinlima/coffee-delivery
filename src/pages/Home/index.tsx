@@ -1,8 +1,10 @@
 import { Card } from "../../components/Card";
-import { CoffeeList, HeaderSection, HomeContainer, ItemsContainer } from "./styles";
+import { CoffeeCatalog, HeaderSection, HomeContainer, ItemsContainer } from "./styles";
 import imageMain from '../../assets/image-main.svg'
 import { ShoppingCart, Coffee, Package, Timer } from "@phosphor-icons/react";
 import { useTheme } from "styled-components";
+import coffeesData from '../../../coffee-data.json'
+
 
 
 export function Home(){
@@ -54,10 +56,15 @@ export function Home(){
         </div>
         <img src={ imageMain} alt="" />
       </HomeContainer>
-      <CoffeeList>
+      <CoffeeCatalog>
         <h1>Nossos cafés</h1>
-        <Card />
-      </CoffeeList>
+        <main>
+          {coffeesData.coffees.map((coffee) => (
+            <Card key={coffee.id} coffee={coffee}/>
+          ))}
+        </main>
+        
+      </CoffeeCatalog>
     </>
   )
 }
