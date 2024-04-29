@@ -48,6 +48,7 @@ export const CatalogMain = styled.div`
 
 export const CatalogCart = styled.div`
   display: flex;
+  align-items: center;
   gap: 1.438rem;
 
  div{
@@ -63,18 +64,34 @@ export const CatalogCart = styled.div`
     ${typography.fonts.titleM}
   }
  }
+`
 
+export const InputCatalog = styled.section`
+  display: flex;
+  justify-content: center;
+  align-items: center;
   form{
     height: 2.375rem;
-    input{
-      max-width: 4.5rem;
-      height: 100%;
-      border: none;
-      outline: 0;
-    }
+    display: flex;
+    gap: 0.5rem;
+
     button{
-      
-     
+      border: none;
+
+      .button-catalog{
+        background: ${props => props.theme.colors['purple-dark']};
+        color: white;
+        padding: 0.5rem;
+        width: 2.375rem;
+        height: 100%;
+        border-radius: 8px;
+        transition: all 0.2;
+
+        &:hover{
+        background: ${props => props.theme.colors['purple']};
+        cursor: pointer;
+        }
+      }
     }
   }
 `
