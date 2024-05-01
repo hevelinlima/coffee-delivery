@@ -1,7 +1,8 @@
 import styled from "styled-components";
+import { typography } from "../../styles/typography";
 
 export const InputContainer = styled.section`
-  max-width: 4.5rem;
+  width: 4.6rem;
   height: 100%;
 
   display: flex;
@@ -15,9 +16,24 @@ export const InputContainer = styled.section`
     background-color: transparent;
     display: flex;
     align-items: center;
+    border: none;
+
+    padding: 0 0.25rem;
+    > svg {
+      color:${(props)=>props.theme.colors["purple-dark"]};
+      &:hover{
+        opacity: 0.8;
+      }
+    }
   }
   p{
     display: flex;
+    justify-content: center;
     align-items: center;
+
+    color: ${(props)=>props.theme.colors["base-title"]};
+    ${typography.fonts.textM}
+
+    width: 1.25rem;
   }
 `

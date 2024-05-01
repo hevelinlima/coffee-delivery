@@ -80,8 +80,7 @@ export const PaymentOptions = styled.div`
     display: flex;
     align-items: center;
     justify-content: space-between;
-    
-
+  
     div{
       display: flex;
       gap: 0.75rem;
@@ -90,5 +89,54 @@ export const PaymentOptions = styled.div`
         color: ${(props)=>props.theme.colors['purple']}; 
       }
     }
+  }
+`
+
+export const ConfirmOrder = styled.div`
+  max-width: 28rem;
+  height: auto;
+  border-radius: 8px 40px;
+  background-color:${(props)=>props.theme.colors['base-card']};
+  padding: 1rem 2.5rem 2rem 2.5rem;
+`
+
+export const CartTotal = styled.div`
+  width: 100%;
+  height: auto;
+  padding: 1.5rem 0;
+
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+
+  div{
+    display: flex;
+    justify-content: space-between;
+    span{
+      color:${(props)=>props.theme.colors['base-text']};
+      ${typography.fonts.textM};
+    }
+    p{
+      color:${(props)=>props.theme.colors['base-subtitle']};
+      ${typography.fonts.textL};
+      font-weight: bold;
+    }
+  }
+`
+
+export const ConfirmButton = styled.button`
+  width: 100%;
+  border: none;
+  padding: 0.75rem 0;
+  border-radius: 8px;
+
+  background-color: ${(props)=>props.theme.colors['yellow']};
+  color: ${(props)=>props.theme.colors['white']};
+  ${typography.fonts.buttonG};
+  transition: 0.2s ease;
+
+
+  &:hover{
+    background-color: ${(props)=>props.theme.colors['yellow-dark']};
   }
 `

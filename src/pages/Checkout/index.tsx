@@ -1,11 +1,19 @@
 import { Bank, CreditCard, CurrencyDollarSimple, MapPinLine, Money } from "@phosphor-icons/react";
-import { CheckoutOrder, Container, FormHeader, InfoContainer, InfoForm, PaymentForm, PaymentOptions } from "./styles";
+import { CartTotal, CheckoutOrder, ConfirmButton, ConfirmOrder, Container, FormHeader, InfoContainer, InfoForm, PaymentForm, PaymentOptions } from "./styles";
 import { useTheme } from "styled-components";
-import { TextInput } from "../../components/TextInput";
-import { RadioInput } from "../../components/RadioInput";
+import { TextInput } from "./Components/TextInput";
+import { RadioInput } from "./Components/RadioInput";
+import { CartCard } from "./Components/CartCard";
+import coffeeData from "../../../coffee-data.json"
 
 export function Checkout(){
   const theme = useTheme()
+
+  const formattedPrice = coffeeData.coffees[0].price.toLocaleString('pt-BR', {
+    minimumFractionDigits: 2,
+    maximumFractionDigits: 2,
+  });
+  
   return(
     <Container>
       <InfoContainer>
@@ -68,7 +76,7 @@ export function Checkout(){
               <PaymentOptions>
                 <section>
                 <RadioInput 
-                  isSelected>
+                  isSelected={false}>
                     <div>
                       <CreditCard size={18}/>
                       <span>CARTÃO DE CRÉDITO</span>
@@ -82,7 +90,7 @@ export function Checkout(){
                     </div>
                   </RadioInput>
                   <RadioInput
-                    isSelected>
+                    isSelected={false}>
                     <div>
                       <Money size={18}/>
                       <span>DINHEIRO</span>
@@ -95,6 +103,29 @@ export function Checkout(){
       </InfoContainer>
       <InfoContainer>
         <h2>Cafés selecionados</h2>
+        <ConfirmOrder>
+          <div>
+            <CartCard />
+            <CartCard />
+          </div>
+          <CartTotal>
+            <div>
+              <span>Total de itens</span>
+              <span>R$ {(formattedPrice)}</span>
+            </div>
+            <div>
+              <span>Entrega</span>
+              <span>R$ 3,50</span>
+            </div>
+            <div>
+              <p>Total</p>
+              <p>R$ 33,50</p>
+            </div>
+          </CartTotal>
+          <ConfirmButton>
+            CONFIRMAR PEDIDO
+          </ConfirmButton>
+        </ConfirmOrder>
       </InfoContainer>
     </Container>
   )

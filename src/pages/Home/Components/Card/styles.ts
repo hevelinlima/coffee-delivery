@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { typography } from "../../styles/typography";
+import { typography } from "../../../../styles/typography";
 
 export const Container = styled.div`
   display: flex;
@@ -21,7 +21,8 @@ export const CatalogMain = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  padding: 1.25rem;
+  padding: 1rem;
+  margin-bottom: 1rem;
 
   div{
     ${typography.fonts.tag}
@@ -70,7 +71,8 @@ export const InputCatalog = styled.section`
   display: flex;
   justify-content: center;
   align-items: center;
-  form{
+
+  section{
     height: 2.375rem;
     display: flex;
     gap: 0.5rem;

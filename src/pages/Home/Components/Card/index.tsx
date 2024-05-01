@@ -1,6 +1,6 @@
 import { ShoppingCart } from '@phosphor-icons/react'
 import { CatalogCart, CatalogMain, Container, InputCatalog } from './styles'
-import { QuantitySelectorInput } from '../QuantitySelectorInput'
+import { QuantitySelectorInput } from '../../../../components/QuantitySelectorInput'
 
 type CardProps = {
   coffee: {
@@ -34,10 +34,10 @@ export function Card({coffee}: CardProps){
       <CatalogCart>
         <div>
           <p>R$</p>
-          <span>{coffee.price}</span>
+          <span>{coffee.price.toFixed(2)}</span>
         </div>
         <InputCatalog>
-          <form action="">
+          <section>
             <QuantitySelectorInput
             
             />
@@ -48,7 +48,7 @@ export function Card({coffee}: CardProps){
                 className='button-catalog'
               />
             </button>
-          </form>
+          </section>
         </InputCatalog>
       </CatalogCart>
     </Container>

@@ -1,4 +1,4 @@
-import { Card } from "../../components/Card";
+import { Card } from "./Components/Card";
 import { CoffeeCatalog, HeaderSection, HomeContainer, ItemsContainer } from "./styles";
 import imageMain from '../../assets/image-main.svg'
 import { ShoppingCart, Coffee, Package, Timer } from "@phosphor-icons/react";
