@@ -51,6 +51,7 @@ export const InfoForm = styled.div`
     'district city state';
   grid-template-columns: 12.5rem 1fr 3.75rem;
   margin: 0.5rem 0.375rem;
+  
 `
 
 export const PaymentForm = styled.div`
@@ -59,6 +60,7 @@ export const PaymentForm = styled.div`
   padding: 2.5rem;
   border-radius: 6px;
   background-color:${(props)=>props.theme.colors['base-card']};
+  
   header{
     display: flex;
     align-items: flex-start;

@@ -13,6 +13,10 @@ export const TextInputContainer = styled.label`
   border-radius: 4px;
   background-color: ${(props) => props.theme.colors["base-input"]};
 
+  &:focus-within {
+    border: 1px solid ${(props) => props.theme.colors['yellow-dark']};
+  }
+
   input{
     width: 100%;
     border: 0;
@@ -25,6 +29,7 @@ export const TextInputContainer = styled.label`
       color: ${(props) => props.theme.colors['base-label']};
     }
   }
+
   span {
     color: ${(props) => props.theme.colors['base-label']};
     padding-right: 0.75rem;
