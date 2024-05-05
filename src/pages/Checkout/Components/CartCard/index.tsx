@@ -20,7 +20,6 @@ export function CartCard({coffee}: CartCardProps){
 
   const coffeeQuantityPrice = (coffee.price * coffee.quantity).toFixed(2)
 
-
   return(
     <CartContainer>
       <img src={coffee.image} alt="" />  

@@ -16,20 +16,6 @@ export const Aside = styled.aside`
   display: flex;
   gap: 0.75rem;
   height: 2.375rem;
-
-  .location{
-    display: flex;
-    align-items: center;
-    gap: 0.25rem;
-    height: 100%;
-    padding: 0.6rem;
-    border-radius: 8px;
-    background: ${(props)=> props.theme.colors['purple-light']};
-    p{
-      color: ${(props)=> props.theme.colors['purple']};
-      font-size: 0.875rem;
-    }
-  }
   
   .cart-class{
     background: ${props => props.theme.colors['yellow-light']};
@@ -49,7 +35,6 @@ export const Aside = styled.aside`
       font-weight: bold;
       width: 1.25rem;
       height: 1.25rem;
-      padding: 0.25rem;
       border-radius: 50%;
 
       display: flex;
@@ -65,5 +50,19 @@ export const Aside = styled.aside`
     &:hover{
       opacity: 0.7;
     }
+  }
+`
+
+export const LocationContainer = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+  height: 100%;
+  padding: 0.6rem;
+  border-radius: 8px;
+  background: ${(props)=> props.theme.colors['purple-light']};
+  p{
+    color: ${(props)=> props.theme.colors['purple']};
+    font-size: 0.875rem;
   }
 `

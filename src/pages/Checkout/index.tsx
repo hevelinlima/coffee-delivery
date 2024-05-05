@@ -18,7 +18,7 @@ type OrderInputs = {
   district: string,
   city: string,
   state: string,
-  paymentMethod: 'credit' | 'debit' | 'cash'
+  paymentOption: 'credit' | 'debit' | 'cash'
 }
 
 const newOrderFormValidationSchema = zod.object({
@@ -29,27 +29,22 @@ const newOrderFormValidationSchema = zod.object({
   district: zod.string().min(1, 'Informe seu bairro'),
   city: zod.string().min(1, 'Informe sua cidade'),
   state: zod.string().min(1, 'Informe sua UF').max(2 ,'Adicione apenas a sigla do seu estado'),
-  paymentMethod: zod.enum(['credit', 'debit', 'cash'])
+  paymentOption: zod.enum(['credit', 'debit', 'cash'])
 })
 
 export type OrderInfo = zod.infer<typeof newOrderFormValidationSchema>
 
-// const shippingPrice = 3.5
+const deliveryCharge = 3.5
 
 export function Checkout(){
   const theme = useTheme()
   const { cart, checkout } = useCart()
 
-  const formattedPrice = coffees[0].price.toLocaleString('pt-BR', {
-    minimumFractionDigits: 2,
-    maximumFractionDigits: 2,
-  });
-
   const { register, handleSubmit, watch } = useForm<OrderInputs>({
     resolver: zodResolver(newOrderFormValidationSchema),
   });
 
-  const selectedPaymentMethod = watch('paymentMethod')
+  const optedPayment = watch('paymentOption')
 
   const handleConfirmOrder: SubmitHandler<OrderInputs> = (orderData) => {
     if (cart.length === 0) {
@@ -61,7 +56,7 @@ export function Checkout(){
   const cartTotal = cart.map((item)=>{
     const coffeeData = coffees.find((coffee)=>{return coffee.id === item.id});
     if (!coffeeData) {
-      throw new Error('Invalid coffee.')
+      throw new Error('Não foi possível processar')
     }
     return {
       ...coffeeData,
@@ -70,6 +65,11 @@ export function Checkout(){
     } 
   )
   
+  
+  const totalItems = cartTotal.reduce((accumulator, currentCoffee)=>{
+    return (accumulator += currentCoffee.quantity * currentCoffee.price)
+  }, 0)
+
   return(
     <Container>
       <InfoContainer>
@@ -139,8 +139,8 @@ export function Checkout(){
               <PaymentOptions>
                 <section>
                 <RadioInput 
-                  isSelected={selectedPaymentMethod === 'credit'}
-                  {...register('paymentMethod')}
+                  isSelected={optedPayment === 'credit'}
+                  {...register('paymentOption')}
                   value="credit"
                 >
                     <div>
@@ -149,8 +149,8 @@ export function Checkout(){
                     </div>
                   </RadioInput>
                   <RadioInput 
-                    isSelected={selectedPaymentMethod === 'debit'}
-                    {...register('paymentMethod')}  
+                    isSelected={optedPayment === 'debit'}
+                    {...register('paymentOption')}  
                     value="debit"
                   >
                   <div>
@@ -159,8 +159,8 @@ export function Checkout(){
                     </div>
                   </RadioInput>
                   <RadioInput
-                    isSelected={selectedPaymentMethod === 'cash'}
-                    {...register('paymentMethod')}
+                    isSelected={optedPayment === 'cash'}
+                    {...register('paymentOption')}
                     value="cash"
                   >
                     <div>
@@ -187,15 +187,15 @@ export function Checkout(){
           <CartTotal>
             <div>
               <span>Total de itens</span>
-              <span>R$ {(formattedPrice)}</span>
+              <span>R$ {(totalItems).toFixed(2)}</span>
             </div>
             <div>
               <span>Entrega</span>
-              <span>R$ 3,50</span>
+              <span>R$ {(deliveryCharge).toFixed(2)}</span>
             </div>
             <div>
               <p>Total</p>
-              <p>R$ 33,50</p>
+              <p>R$ {(totalItems + deliveryCharge).toFixed(2)}</p>
             </div>
           </CartTotal>
           <ConfirmButton form='order' type="submit">

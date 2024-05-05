@@ -2,9 +2,20 @@ import { CurrencyDollarSimple, MapPin, Timer } from "@phosphor-icons/react";
 import { DataReview, Heading, MainContainer } from "./styles";
 import illustration from "../../assets/illustration.svg"
 import { useTheme } from "styled-components";
+import { useCart } from "../../hooks/useCart";
+import { useParams } from "react-router-dom";
 
 export function Success(){
   const theme = useTheme()
+  const { orders } = useCart()
+  const { orderId } = useParams()
+  const orderData = orders.find((order) => order.id === Number(orderId));
+
+  const paymentOption = {
+    debit: "Cartão de débito",
+    credit: "Cartão de crédito",
+    cash: "Dinheiro"
+  }
   return(
     <>
        <Heading>
@@ -22,9 +33,9 @@ export function Success(){
             className="icons"
             style={{ backgroundColor: theme.colors['purple'] }}/>
             <p>
-              Entrega em <strong>Rua João Daniel Martinelli, 102</strong> 
+              Entrega em <strong>{orderData?.street}, {orderData?.number}</strong> 
               <br />
-              Farrapos, Porto Alegre
+              {orderData?.city}, {orderData?.state}
             </p>
           </div>
           <div>
@@ -47,7 +58,7 @@ export function Success(){
             <p>
               Pagamento na entrega
               <br />
-              <strong>Cartão de crédito</strong>
+              <strong>{paymentOption[orderData.paymentOption]}</strong>
             </p>
           </div>
         </DataReview>
