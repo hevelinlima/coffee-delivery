@@ -52,7 +52,7 @@ export function cartReducer(state: CartState, action: Actions){
         const itemToDecrement = draft.cart.find(
           (item) => item.id === action.payload.itemId,
         )
-        if (itemToDecrement?.id){
+        if (itemToDecrement?.id && itemToDecrement.quantity > 1){
           itemToDecrement.quantity -= 1
         }
       })

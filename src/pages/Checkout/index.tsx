@@ -1,7 +1,7 @@
 import { Bank, CreditCard, CurrencyDollarSimple, MapPinLine, Money } from "@phosphor-icons/react";
 import { CartTotal, CheckoutOrder, ConfirmButton, ConfirmOrder, Container, FormHeader, InfoContainer, InfoForm, PaymentForm, PaymentOptions } from "./styles";
 import { useTheme } from "styled-components";
-import { useForm } from "react-hook-form";
+import { SubmitHandler, useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod"
 import * as zod from "zod"
 import { TextInput } from "./Components/TextInput";
@@ -29,7 +29,7 @@ const newOrderFormValidationSchema = zod.object({
   district: zod.string().min(1, 'Informe seu bairro'),
   city: zod.string().min(1, 'Informe sua cidade'),
   state: zod.string().min(1, 'Informe sua UF').max(2 ,'Adicione apenas a sigla do seu estado'),
-  paymentMethod: zod.enum(['credit', 'debit', 'cash '])
+  paymentMethod: zod.enum(['credit', 'debit', 'cash'])
 })
 
 export type OrderInfo = zod.infer<typeof newOrderFormValidationSchema>
@@ -38,7 +38,7 @@ export type OrderInfo = zod.infer<typeof newOrderFormValidationSchema>
 
 export function Checkout(){
   const theme = useTheme()
-  const { cart } = useCart()
+  const { cart, checkout } = useCart()
 
   const formattedPrice = coffees[0].price.toLocaleString('pt-BR', {
     minimumFractionDigits: 2,
@@ -49,12 +49,14 @@ export function Checkout(){
     resolver: zodResolver(newOrderFormValidationSchema),
   });
 
-  function handleConfirmOrder() {
-    
-  }
-
-
   const selectedPaymentMethod = watch('paymentMethod')
+
+  const handleConfirmOrder: SubmitHandler<OrderInputs> = (orderData) => {
+    if (cart.length === 0) {
+      return alert('Adicione pelo menos um item ao carrinho')
+    }
+    checkout(orderData)
+  }
 
   const cartTotal = cart.map((item)=>{
     const coffeeData = coffees.find((coffee)=>{return coffee.id === item.id});

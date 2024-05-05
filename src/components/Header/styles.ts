@@ -40,15 +40,26 @@ export const Aside = styled.aside`
     display: flex;
     align-items: center;
     transition: all 0.2;
+    position: relative;
 
     span{
-      color: ${(props)=> props.theme.colors['yellow-dark']};
-      ${typography.fonts.textS};
+      background-color: ${(props)=> props.theme.colors['yellow-dark']};
+      color: ${(props)=> props.theme.colors['white']};
+      ${typography.fonts.textXS};
       font-weight: bold;
       width: 1.25rem;
       height: 1.25rem;
       padding: 0.25rem;
       border-radius: 50%;
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      position: absolute;
+      right: 0;
+      top: 0;
+      transform: translate(35%, -35%);
     }
 
     &:hover{

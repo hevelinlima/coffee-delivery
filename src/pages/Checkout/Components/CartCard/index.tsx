@@ -18,6 +18,9 @@ interface CartCardProps{
 export function CartCard({coffee}: CartCardProps){
   const { incrementItem, decrementItem, removeItem } = useCart()
 
+  const coffeeQuantityPrice = (coffee.price * coffee.quantity).toFixed(2)
+
+
   return(
     <CartContainer>
       <img src={coffee.image} alt="" />  
@@ -37,7 +40,7 @@ export function CartCard({coffee}: CartCardProps){
       </main>
       <section>
         <p>R$</p>
-        <span>{coffee.price.toFixed(2)}</span>
+        <span>{coffeeQuantityPrice}</span>
       </section> 
     </CartContainer>
   )
