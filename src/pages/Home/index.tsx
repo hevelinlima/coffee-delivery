@@ -6,7 +6,6 @@ import { useTheme } from "styled-components";
 import coffeesData from '../../../coffee-data.json'
 
 
-
 export function Home(){
   const theme = useTheme()
   return(
@@ -60,10 +59,12 @@ export function Home(){
         <h1>Nossos cafés</h1>
         <main>
           {coffeesData.coffees.map((coffee) => (
-            <Card key={coffee.id} coffee={coffee}/>
+            <Card 
+              key={coffee.id} 
+              coffee={coffee}
+            />
           ))}
         </main>
-        
       </CoffeeCatalog>
     </>
   )

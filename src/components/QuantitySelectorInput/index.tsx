@@ -1,20 +1,13 @@
 import { Minus, Plus } from "@phosphor-icons/react";
 import { InputContainer } from "./styles";
-import { useState } from "react";
 
-export function QuantitySelectorInput(){
-  const [quantity, setQuantity ] = useState<number>(1);
+type QuantitySelectorProps = {
+  quantity: number,
+  decrementQuantity: () => void,
+  incrementQuantity: () => void
+}
 
-  function incrementQuantity(){ 
-    setQuantity(quantity + 1)
-  }
-
-  function decrementQuantity(){
-    if (quantity > 1){
-      setQuantity(quantity - 1)
-    }
-  }
-
+export function QuantitySelectorInput({ quantity, decrementQuantity, incrementQuantity}: QuantitySelectorProps){
   return(
     <InputContainer>
       <button onClick={decrementQuantity} >

@@ -13,6 +13,7 @@
     "@hookform/resolvers": "^3.3.4",
     "@phosphor-icons/react": "^2.1.4",
     "@types/styled-components": "^5.1.34",
+    "immer": "^10.1.1",
     "phosphor-icons": "^1.4.2",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",

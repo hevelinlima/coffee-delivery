@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { typography } from "../../styles/typography";
 
 export const HeaderContainer = styled.header`
   width: 100%;
@@ -39,6 +40,16 @@ export const Aside = styled.aside`
     display: flex;
     align-items: center;
     transition: all 0.2;
+
+    span{
+      color: ${(props)=> props.theme.colors['yellow-dark']};
+      ${typography.fonts.textS};
+      font-weight: bold;
+      width: 1.25rem;
+      height: 1.25rem;
+      padding: 0.25rem;
+      border-radius: 50%;
+    }
 
     &:hover{
       opacity: 0.7;

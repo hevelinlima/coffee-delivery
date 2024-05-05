@@ -7,7 +7,8 @@ import * as zod from "zod"
 import { TextInput } from "./Components/TextInput";
 import { RadioInput } from "./Components/RadioInput";
 import { CartCard } from "./Components/CartCard";
-import coffeeData from "../../../coffee-data.json"
+import { useCart } from "../../hooks/useCart";
+import { coffees } from "../../../coffee-data.json"
 
 type OrderInputs = {
   cep: number,
@@ -31,10 +32,15 @@ const newOrderFormValidationSchema = zod.object({
   paymentMethod: zod.enum(['credit', 'debit', 'cash '])
 })
 
+export type OrderInfo = zod.infer<typeof newOrderFormValidationSchema>
+
+// const shippingPrice = 3.5
+
 export function Checkout(){
   const theme = useTheme()
+  const { cart } = useCart()
 
-  const formattedPrice = coffeeData.coffees[0].price.toLocaleString('pt-BR', {
+  const formattedPrice = coffees[0].price.toLocaleString('pt-BR', {
     minimumFractionDigits: 2,
     maximumFractionDigits: 2,
   });
@@ -47,7 +53,20 @@ export function Checkout(){
     
   }
 
+
   const selectedPaymentMethod = watch('paymentMethod')
+
+  const cartTotal = cart.map((item)=>{
+    const coffeeData = coffees.find((coffee)=>{return coffee.id === item.id});
+    if (!coffeeData) {
+      throw new Error('Invalid coffee.')
+    }
+    return {
+      ...coffeeData,
+      quantity: item.quantity
+    }
+    } 
+  )
   
   return(
     <Container>
@@ -68,7 +87,7 @@ export function Checkout(){
               <TextInput 
                 containerProps={{ style: { gridArea: 'cep' } }}     
                 placeholder="CEP"
-                {...register('cep')}
+                {...register('cep', {valueAsNumber: true})}
               />
               <TextInput 
                 containerProps={{ style: { gridArea: 'street' } }}     
@@ -79,7 +98,7 @@ export function Checkout(){
                 containerProps={{ style: { gridArea: 'number' } }}     
               
                 placeholder="Número"
-                {...register('number')}
+                {...register('number', {valueAsNumber: true})}
               />
               <TextInput 
                 containerProps={{ style: { gridArea: 'additionalAddressDetails' } }}    
@@ -156,8 +175,12 @@ export function Checkout(){
         <h2>Cafés selecionados</h2>
         <ConfirmOrder>
           <div>
-            <CartCard />
-            <CartCard />
+            {cartTotal.map((coffee) =>(
+              <CartCard 
+                key={coffee.id}
+                coffee={coffee}
+              />
+            ))}
           </div>
           <CartTotal>
             <div>

@@ -1,17 +1,35 @@
 import { CartContainer, MainSection } from "./styles";
-import coffeeData from "../../../../../coffee-data.json"
 import { QuantitySelectorInput } from "../../../../components/QuantitySelectorInput";
-import { Trash } from "@phosphor-icons/react";
+import { Trash } from "@phosphor-icons/react";  
+import { useCart } from "../../../../hooks/useCart";
 
-export function CartCard(){
+type CoffeeProps = {
+  id: string;
+  image: string;
+  title: string;
+  price: number;
+  quantity: number;
+}
+
+interface CartCardProps{
+  coffee: CoffeeProps;
+}
+
+export function CartCard({coffee}: CartCardProps){
+  const { incrementItem, decrementItem, removeItem } = useCart()
+
   return(
     <CartContainer>
-      <img src={coffeeData.coffees[0].image} alt="" />  
+      <img src={coffee.image} alt="" />  
       <main>
-        <h3>{coffeeData.coffees[0].title}</h3>
+        <h3>{coffee.title}</h3>
         <MainSection>
-          <QuantitySelectorInput />
-          <button className="button-remove">
+          <QuantitySelectorInput 
+            quantity={coffee.quantity}
+            incrementQuantity={()=> incrementItem(coffee.id)}
+            decrementQuantity={()=> decrementItem(coffee.id)}
+          />
+          <button onClick={()=>removeItem(coffee.id)} className="button-remove">
             <Trash size={20}/>
             <p>REMOVER</p>
           </button>
@@ -19,7 +37,7 @@ export function CartCard(){
       </main>
       <section>
         <p>R$</p>
-        <span>{coffeeData.coffees[0].price.toFixed(2)}</span>
+        <span>{coffee.price.toFixed(2)}</span>
       </section> 
     </CartContainer>
   )
