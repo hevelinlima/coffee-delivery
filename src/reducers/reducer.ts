@@ -32,15 +32,15 @@ export function cartReducer(state: CartState, action: Actions){
         }
       })
     case ActionTypes.REMOVE_ITEM:
-      return produce(state, (draft)=> {
-        const itemToRemove = draft.cart.findIndex(
+      return produce(state, (draftState)=> {
+        const itemToRemove = draftState.cart.findIndex(
           (item) => item.id === action.payload.itemId,
         )
-        draft.cart.splice( itemToRemove, 1)
+        draftState.cart.splice( itemToRemove, 1)
       })
     case ActionTypes.INCREMENT_ITEM:
-      return produce(state, (draft)=> {
-        const itemToIncrement = draft.cart.find(
+      return produce(state, (draftState)=> {
+        const itemToIncrement = draftState.cart.find(
           (item) => item.id === action.payload.itemId
         )
         if (itemToIncrement?.id){
@@ -48,8 +48,8 @@ export function cartReducer(state: CartState, action: Actions){
         }
       })
     case ActionTypes.DECREMENT_ITEM:
-      return produce(state, (draft)=> {
-        const itemToDecrement = draft.cart.find(
+      return produce(state, (draftState)=> {
+        const itemToDecrement = draftState.cart.find(
           (item) => item.id === action.payload.itemId,
         )
         if (itemToDecrement?.id && itemToDecrement.quantity > 1){
@@ -57,14 +57,14 @@ export function cartReducer(state: CartState, action: Actions){
         }
       })
     case ActionTypes.CART_CHECKOUT:
-      return produce(state, (draft=>{
+      return produce(state, (draftState=>{
         const newOrder = {
           id: new Date().getTime(),
           items: state.cart,
           ...action.payload.order
         }
-        draft.orders.push(newOrder)
-        draft.cart = []
+        draftState.orders.push(newOrder)
+        draftState.cart = []
 
         action.payload.callback(`order/${newOrder.id}/success`)
       }))

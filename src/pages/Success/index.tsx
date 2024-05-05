@@ -10,6 +10,9 @@ export function Success(){
   const { orders } = useCart()
   const { orderId } = useParams()
   const orderData = orders.find((order) => order.id === Number(orderId));
+  if (!orderData) {
+    throw new Error('Não foi possível prosseguir')
+  }
 
   const paymentOption = {
     debit: "Cartão de débito",

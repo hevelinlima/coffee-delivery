@@ -1,5 +1,15 @@
 import { Bank, CreditCard, CurrencyDollarSimple, MapPinLine, Money } from "@phosphor-icons/react";
-import { CartTotal, CheckoutOrder, ConfirmButton, ConfirmOrder, Container, FormHeader, InfoContainer, InfoForm, PaymentForm, PaymentOptions } from "./styles";
+import { 
+  CartTotal, 
+  CheckoutOrder, 
+  ConfirmButton, 
+  ConfirmOrder, 
+  Container, 
+  FormHeader, 
+  InfoContainer, 
+  InfoForm, 
+  PaymentForm, 
+  PaymentOptions } from "./styles";
 import { useTheme } from "styled-components";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod"
