@@ -18,11 +18,9 @@ export const CartContainer = styled.div`
 
     margin-bottom: 0.5rem;
   }
-
   main{
     padding-right: 1.5rem;
   }
-  
   section{  
     display: flex;
     align-items: center;
@@ -31,6 +29,12 @@ export const CartContainer = styled.div`
     ${typography.fonts.textM};
     font-weight: 700;
     color: ${(props)=>props.theme.colors["base-text"]};
+  }
+  @media only screen and (max-width: 768px) {
+    gap: 0.25rem;
+    img{
+      display: none;
+    }
   }
 `
 

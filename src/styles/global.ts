@@ -15,10 +15,4 @@ export const GlobalStyle = createGlobalStyle`
   body, button, textarea, input{
     ${typography.fonts.textM};
   }
-
-  @media (max-width: 768px) {
-    h1, h2, h3, p, span{
-      font-size: 85%;
-    }
-  }
 `

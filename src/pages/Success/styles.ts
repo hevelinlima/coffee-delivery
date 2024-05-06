@@ -24,6 +24,12 @@ export const MainContainer = styled.main`
     height: 90%;
     width: 28rem;
   }
+  @media only screen and (max-width: 768px) {
+    padding-top: 1rem;
+    img{
+      display: none;
+    }
+  }
 ` 
 
 export const DataReview = styled.div`
@@ -53,5 +59,8 @@ export const DataReview = styled.div`
       ${typography.fonts.textM}
       color: ${(props)=> props.theme.colors["base-text"]};
     }
+  }
+  @media only screen and (max-width: 768px) {
+    padding: 1rem;
   }
 `

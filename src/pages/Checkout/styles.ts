@@ -5,6 +5,9 @@ export const Container = styled.div`
   max-width: 90rem;
   display: flex;
   gap: 2rem;
+  @media only screen and (max-width: 768px) {
+    flex-direction: column;
+  }
 `
 
 export const InfoContainer = styled.div`
@@ -51,11 +54,23 @@ export const InfoForm = styled.div`
     'district city state';
   grid-template-columns: 12.5rem 1fr 3.75rem;
   margin: 0.5rem 0.375rem;
-  
+
+  @media only screen and (max-width: 768px) {
+    grid-template-areas:
+    'cep'
+    'street'
+    'number' 
+    'additionalAddressDetails'
+    'district' 
+    'city' 
+    'state';
+    grid-template-columns: 1fr;
+  }
 `
 
 export const PaymentForm = styled.div`
-  width: 40rem;
+  max-width: 40rem;
+  width: auto;
   margin-top: 0.75rem;
   padding: 2.5rem;
   border-radius: 6px;
@@ -92,14 +107,26 @@ export const PaymentOptions = styled.div`
       }
     }
   }
+  @media only screen and (max-width: 768px) {
+    section{
+      flex-direction: column;
+    }
+  }
 `
 
 export const ConfirmOrder = styled.div`
   max-width: 28rem;
+  min-width: 20rem;
   height: auto;
   border-radius: 8px 40px;
   background-color:${(props)=>props.theme.colors['base-card']};
   padding: 1rem 2.5rem 2rem 2.5rem;
+
+  @media only screen and (max-width: 768px) {
+    div {
+      grid-template-columns: 1fr 1fr;
+    }
+  }
 `
 
 export const CartTotal = styled.div`

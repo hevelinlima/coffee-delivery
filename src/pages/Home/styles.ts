@@ -8,6 +8,11 @@ export const HomeContainer = styled.div`
   img{
     max-width: 28rem;
   }
+  @media only screen and (max-width: 1100px) {
+    img{
+      display: none;
+    }
+  }
 `
 
 export const HeaderSection = styled.header`
@@ -19,6 +24,11 @@ export const HeaderSection = styled.header`
     padding-top: 1rem;
     ${typography.fonts.textL}
     color: ${(props)=> props.theme.colors["base-subtitle"]}
+  }
+  @media only screen and (max-width: 500px) {
+    h1{
+      font-size: 2rem;
+    }
   }
 `
 
@@ -32,16 +42,20 @@ export const ItemsContainer = styled.div`
     display: flex;
     align-items: center;
     gap: 0.75rem;
-      .icon-background{ 
-        padding: 0.4rem;
-        border-radius: 50%;
-        color: ${(props)=> props.theme.colors["background"]};
-      }
-      span{
-        ${typography.fonts.textM}
-        color: ${(props)=> props.theme.colors["base-text"]};
-      }
+
+    .icon-background{ 
+      padding: 0.4rem;
+      border-radius: 50%;
+      color: ${(props)=> props.theme.colors["background"]};
     }
+    span{
+      ${typography.fonts.textM}
+      color: ${(props)=> props.theme.colors["base-text"]};
+    }
+  }
+  @media only screen and (max-width: 500px) {
+    grid-template-columns: 1fr;
+  }
 `
 
 export const CoffeeCatalog = styled.div`
@@ -55,5 +69,15 @@ export const CoffeeCatalog = styled.div`
     width: 100%;
     grid-template-columns: 1fr 1fr 1fr 1fr;
     gap: 2rem;
+  }
+  @media only screen and (max-width: 1000px) {
+    main{
+      grid-template-columns: 1fr 1fr;
+    }
+  }
+  @media only screen and (max-width: 600px) {
+    main{
+      grid-template-columns: 1fr;
+    }
   }
 `
